@@ -3,7 +3,6 @@ package application
 import (
 	"bufio"
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -83,12 +82,16 @@ func CalcHandler(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 	err := json.NewDecoder(r.Body).Decode(&request)
 	if err != nil {
-		fmt.Println(err)
-		http.Error(w, err.Error(), http.StatusBadRequest)
+		response := BadResponse{
+			Result: "Expression is not valid",
+		}
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(422)
+		json.NewEncoder(w).Encode(response)
 		return
 	}
-	fmt.Println(request.Expression)
-	re := regexp.MustCompile(`[^0-9\-+/*]`)
+	request.Expression = strings.ReplaceAll(request.Expression, " ", "")
+	re := regexp.MustCompile(`[^0-9\-+/*()]`)
 	if re.MatchString(request.Expression) {
 		response := BadResponse{
 			Result: "Expression is not valid",
@@ -101,8 +104,9 @@ func CalcHandler(w http.ResponseWriter, r *http.Request) {
 
 	result, err := calculation.Calc(request.Expression)
 	if true == false {
+		// как?
 		response := BadResponse{
-			Result: "what?",
+			Result: "Expression is not valid",
 		}
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(500)
@@ -110,7 +114,7 @@ func CalcHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	if err != nil {
 		response := BadResponse{
-			Result: err.Error(),
+			Result: "Expression is not valid",
 		}
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(422)
@@ -127,6 +131,6 @@ func CalcHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func (a *Application) RunServer() error {
-	http.HandleFunc("/", CalcHandler)
+	http.HandleFunc("/api/v1/calculate", CalcHandler)
 	return http.ListenAndServe(":"+a.config.Addr, nil)
 }
