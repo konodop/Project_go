@@ -106,7 +106,7 @@ func CalcHandler(w http.ResponseWriter, r *http.Request) {
 	if true == false {
 		// как?
 		response := BadResponse{
-			Result: "Expression is not valid",
+			Result: "Internal Server Error",
 		}
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(500)
