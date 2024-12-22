@@ -32,19 +32,19 @@
 <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>curl -X POST http://localhost:8080/api/v1/calculate -H "Content-Type: application/json" -d "{\"expression\": \"1-(1000*10)\"}"</pre></div>
 Ответ:
 <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>{"result":"-9999.000000"}</pre><div class="zeroclipboard-container"></div>
-Статус 200 (ОК)
+Статус 200 (ОК), всë правильно.
 </h4>
 <h2>2</h2>
 <h4>
 <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>curl -X POST http://localhost:8080/api/v1/calculate -H "Content-Type: application/json" -d "{\"expression\": \"1/0\"}"</pre></div>
 Ответ:
 <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>{"error":"Expression is not valid"}</pre><div class="zeroclipboard-container"></div>
-Ошибка 422 (Unprocessable Entity) 
+Ошибка 422 (Unprocessable Entity), так как нельзя делить на ноль.
 </h4>
 <h2>Также есть ошибка 500 (Internal Server Error)</h2>
 <h4>
 <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>{"error": "Internal Server Error"}</pre><div class="zeroclipboard-container"></div>
-Появляется она только если произойдёт чудо
+Появляется она только если произойдёт чудо и в сервере true будет равнятся false
 </h4>
 <hr><hr\>
 <h1>Состав проекта<h1\>
