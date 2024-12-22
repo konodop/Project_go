@@ -18,7 +18,7 @@
 <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>git clone https://github.com/konodop/Project_go.git</pre></div>
 или просто скачать и распаковать .zip файл из гитхаба если не установлен git
 <h4\>
-<h2>шаг 2<h2\><h4> Запуск сервера в папке с помщью терминала либо git bash и команды:<h4\>
+<h2>шаг 2<h2\><h4> Запуск сервера. В основной папке с помщью терминала либо git bash ввести команду:<h4\>
 <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>go run ./cmd/main.go</pre></div>
 <h2>шаг 3<h2\><h4> Отправка POST-запроса через curl: например:<h4\>
 <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>curl -X POST http://localhost:8080/api/v1/calculate -H "Content-Type: application/json" -d "{\"expression\": \"1+1\"}"</pre></div>
