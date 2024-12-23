@@ -20,7 +20,7 @@
 <h4\>
 <h2>шаг 2<h2\><h4> Запуск сервера. В основной папке с помщью терминала либо git bash ввести команду:<h4\>
 <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>go run ./cmd/main.go</pre></div>
-<h2>шаг 3<h2\><h4> Отправка POST-запроса через curl: например:<h4\>
+<h2>шаг 3<h2\><h4> Отправка POST-запроса через curl. Снова открываем терминал в другом окне  с помощью которого можно будет отправлять запросы например:<h4\>
 <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>curl -X POST http://localhost:8080/api/v1/calculate -H "Content-Type: application/json" -d "{\"expression\": \"1+1\"}"</pre></div>
     Ответ:
 <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>{"result":"2.000000"}</pre></div>
